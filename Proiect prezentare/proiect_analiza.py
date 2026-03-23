@@ -1,6 +1,6 @@
 #===============================================================================
 # Nume project: Sistem Distribuit pentru Analiza Textelor
-# Creat de: [Chivariu Andrei] si [Manea Ionut]
+# Creat de: [Chivari Andrei] si [Manea Ionut]
 # Data: [23.03.2026]
 # Proiect prezentare - Procesare distribuita a unui dictionar de cuvinte
 # Scop: Demonstram utilizarea operatiilor MPI (Scatter, Gather, Reduce si Barrier)
@@ -58,7 +58,7 @@ palindroame_gasite = []
 total_vocale_local = 0
 
 for cuvant in cuvinte_locale:
-    # Simulam ca procesarea fiecarui cuvant este o operatie grea (inspirat din test5.py)
+    # Simulam ca procesarea fiecarui cuvant este o operatie grea, adaugand o intarziere aleatoare.
     time.sleep(random.uniform(0.05, 0.15))
     
     # Numaram vocalele
