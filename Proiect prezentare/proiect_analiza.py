@@ -91,3 +91,5 @@ if rank == 0:
     print(f"Numarul total de palindroame gasite: {len(toate_palindroamele)}")
     print(f"Palindroamele sunt: {toate_palindroamele}")
     print("-------------------------------------")
+
+# Pentru rulare: mpiexec -np 5 python proiect_analiza.py
