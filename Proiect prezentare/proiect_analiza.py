@@ -1,5 +1,5 @@
 #===============================================================================
-# Nume proiectL Sistem Distribuit pentru Analiza Textelor
+# Nume project: Sistem Distribuit pentru Analiza Textelor
 # Creat de: [Chivariu Andrei] si [Manea Ionut]
 # Data: [23.03.2026]
 # Proiect prezentare - Procesare distribuita a unui dictionar de cuvinte
@@ -26,7 +26,7 @@ def genereaza_cuvinte(n):
         lista_cuvinte.append(cuvant)
         
     # Adaugam manual cateva palindroame pentru a fi siguri ca gasim ceva
-    lista_cuvinte.extend(["ana", "cojoc", "capac", "radar", "minim"])
+    lista_cuvinte.extend(["ana", "cojoc", "capac", "radar", "minim", "rotor", "civic",])
     random.shuffle(lista_cuvinte)
     return lista_cuvinte
 
