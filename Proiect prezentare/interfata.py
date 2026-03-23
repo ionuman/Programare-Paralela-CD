@@ -5,20 +5,20 @@ import threading
 
 # Functia care ruleaza motorul MPI in fundal
 def ruleaza_mpi_in_fundal():
-    # Dezactivam butonul cat timp ruleaza ca sa nu apasam de 2 ori
+    # Dezactivam butonul cat timp ruleaza pentry a preveni dublarea procesului.
     buton_start.config(state=tk.DISABLED, text="Se proceseaza...")
     consola.insert(tk.END, ">>> Initializare MPI cu 5 procese...\n")
     
     try:
-        # Aici apelam efectiv comanda ta din terminal!
+        # Aici apelam efectiv comanda din terminal!
         rezultat = subprocess.run(
             ["mpiexec", "-np", "5", "python", "proiect_analiza.py"],
             capture_output=True, # Capturam ce ar fi scris in terminal
-            text=True,           # Il vrem ca text, nu ca byti
+            text=True,           # Sa fie text, nu ca byti
             check=True
         )
         
-        # Daca a rulat cu succes, afisam rezultatul in fereastra noastra
+        # Daca a rulat cu succes, afisam rezultatul in fereastra.
         consola.insert(tk.END, rezultat.stdout)
         
     except subprocess.CalledProcessError as e:
