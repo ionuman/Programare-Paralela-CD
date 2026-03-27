@@ -7,12 +7,11 @@ import threading
 def ruleaza_mpi_in_fundal():
     # Dezactivam butonul cat timp ruleaza pentry a preveni dublarea procesului.
     buton_start.config(state=tk.DISABLED, text="Se proceseaza...")
-    consola.insert(tk.END, ">>> Initializare MPI cu 5 procese...\n")
+    consola.insert(tk.END, ">>> Initializare MPI cu 6 procese...\n")
     
     try:
-        # Aici apelam efectiv comanda din terminal!
         rezultat = subprocess.run(
-            ["mpiexec", "-np", "5", "python", "proiect_analiza.py"],
+            ["mpiexec", "-np", "6", "python", "proiect_analiza.py"],
             capture_output=True, # Capturam ce ar fi scris in terminal
             text=True,           # Sa fie text, nu ca byti
             check=True
@@ -54,7 +53,7 @@ titlu = tk.Label(fereastra, text="Analizator Distribuite cu MPI", font=("Helveti
 titlu.pack(pady=15)
 
 # Instructiuni
-descriere = tk.Label(fereastra, text="Apasati butonul de mai jos pentru a lansa procesarea distribuita pe 5 noduri.", font=("Helvetica", 10), bg="#f0f0f0")
+descriere = tk.Label(fereastra, text="Apasati butonul de mai jos pentru a lansa procesarea distribuita pe 6 noduri.", font=("Helvetica", 12), bg="#f0f0f0")
 descriere.pack(pady=5)
 
 # Butonul de start
@@ -62,7 +61,7 @@ buton_start = tk.Button(fereastra, text="Porneste Analiza Distribuita", font=("H
                         bg="#4CAF50", fg="white", width=30, height=2, command=porneste_analiza)
 buton_start.pack(pady=15)
 
-# O casuta de text care va juca rolul consolei/terminalului
+# O casuta de text cu rolul consolei/terminalului
 frame_consola = tk.LabelFrame(fereastra, text=" Rezultatele Procesarii (Log Terminal) ", font=("Helvetica", 10, "bold"), bg="#f0f0f0")
 frame_consola.pack(padx=20, pady=10, fill=tk.BOTH, expand=True)
 

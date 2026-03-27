@@ -17,7 +17,7 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-# Functie ajutatoare pentru generarea de cuvinte (inspirat din test4.py)
+# Functie ajutatoare pentru generarea de cuvinte random si pentru a cauta palindroame
 def genereaza_cuvinte(n):
     lista_cuvinte = []
     for _ in range(n):
@@ -68,7 +68,7 @@ for cuvant in cuvinte_locale:
     if este_palindrom(cuvant):
         palindroame_gasite.append(cuvant)
 
-print(f"Procesul {rank} a analizat {len(cuvinte_locale)} cuvinte, a gasit {total_vocale_local} vocale si palindroamele: {palindroame_gasite}")
+print(f"Procesul {rank} a analizat {len(cuvinte_locale)} cuvinte, a gasit {total_vocale_local} vocale si palindroamele: {palindroame_gasite}", flush=True)
 
 # --- PASUL 4: AGREGAREA DATELOR (REDUCE & GATHER) ---
 suma_totala_vocale = comm.reduce(total_vocale_local, op=MPI.SUM, root=0)
@@ -81,12 +81,13 @@ comm.Barrier()
 
 # --- PASUL 6: MASTERUL AFISEAZA REZULTATUL FINAL ---
 if rank == 0:
+    time.sleep(0.5)  # Asteptam jumatate de secunda ca toate print-urile intarziate sa ajunga pe ecran
     # Aplatizam lista de liste (extragem cuvintele din listele individuale)
     toate_palindroamele = []
     for lista in gathered_palindroame:
         toate_palindroamele.extend(lista)
         
-    print("\n--- REZULTATE FINALE ALE ANALIZEI ---")
+    print("\n--- REZULTATE FINALE ALE ANALIZEI ---", flush=True)
     print(f"Numarul total de vocale procesate in sistem: {suma_totala_vocale}")
     print(f"Numarul total de palindroame gasite: {len(toate_palindroamele)}")
     print(f"Palindroamele sunt: {toate_palindroamele}")
